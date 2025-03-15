@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SCAReporting.MainPage"
+             xmlns:viewmodel="clr-namespace:SCAReporting.ViewModel"
+             x:DataType="viewmodel:MainViewModel">
+
+    <Grid RowDefinitions="100,Auto,*"
+          ColumnDefinitions=".75*,.25*"
+          Padding="10"
+          RowSpacing="10"
+          ColumnSpacing="10">
+        <Image Grid.ColumnSpan="3"
+               Source="mkm_consultancy.jpg"
+              BackgroundColor="Transparent" ></Image>
+        
+        
+        <Entry Placeholder="Enter Text"
+               Text="{Binding Text}"
+               Grid.Row="1"/>
+        <Button Grid.Row="1"
+                Text="Add"
+                Grid.Column="1"
+                Command="{Binding AddCommand}"/>
+        
+        
+        <CollectionView Grid.Row="3" Grid.ColumnSpan="3" ItemsSource="{Binding Items}">
+            <!--<CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Apple</x:String>
+                    <x:String>Banana</x:String>
+                    <x:String>Oranges</x:String>
+                    <x:String>Ananas</x:String>
+                    <x:String>Graphas</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>-->
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="{x:Type x:String}">
+                    <SwipeView>
+                        <!--<SwipeView.LeftItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Info" BackgroundColor="LightGray"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}},Path=InfoCommand}"
+                                           CommandParameter="{Binding .}"/>
+
+                            </SwipeItems>
+                        </SwipeView.LeftItems>-->
+
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete" BackgroundColor="LightGray"
+                                           Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=DeleteCommand}"
+                                           CommandParameter="{Binding .}"/>
+
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="0,5">
+                            <Frame>
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:MainViewModel}}, Path=TapCommand}"
+ CommandParameter="{Binding .}"/>
+                                </Frame.GestureRecognizers>
+                                <Label Text="{Binding .}"
+               FontSize="20"></Label>
+                            </Frame>
+                        </Grid>
+                    </SwipeView>
+                    
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+                        
+        
+    </Grid>
+        <!--<ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Image
+                Source="mkm_consultancy.jpg"
+                HeightRequest="185"
+                Aspect="AspectFit"
+                SemanticProperties.Description="MKM Consultancy" />
+
+
+            <FlexLayout  Direction="Row" AlignItems="Center" JustifyContent="SpaceEvenly">
+                <Label Text="Name:" />
+                <Entry MaxLength="20" Placeholder="Name" />
+            </FlexLayout>
+
+
+            <FlexLayout Direction="Row" AlignItems="Center" JustifyContent="SpaceEvenly">
+                <Label Text="Personal Nr:" />
+                <Entry Keyboard="Numeric" MaxLength="4" Placeholder="Personal Nr" />
+            </FlexLayout>
+           
+
+            <Button
+                x:Name="CounterBtn"
+                Text="Click me" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill" />
+        </VerticalStackLayout>
+    </ScrollView>-->
+
+</ContentPage>
