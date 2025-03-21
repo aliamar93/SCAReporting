@@ -4,7 +4,8 @@
              x:Class="SCAReporting.DetailPage"
              xmlns:viewmodel="clr-namespace:SCAReporting.ViewModel"
              x:DataType="viewmodel:DetailViewModel"
-             Title="DetailPage">
+             Shell.NavBarIsVisible="False"
+             >
     <VerticalStackLayout>
         <Label 
             Text="{Binding Text}"
